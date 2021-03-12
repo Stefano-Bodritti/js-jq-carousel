@@ -2,3 +2,33 @@
 // In oltre per scorrere le immagini permettere anche l’uso delle frecce sinistra e destra della tastiera
 // Utiliziamo una classe first e last per capire quali sono la prima e ultima immagine dello slider
 // Utilizziamo una classe active per aiutarci a capire quale è l’immagine attuale da visualizzare nello slider
+
+$(function() {
+
+  // Al click sulla freccia dx tolgo classe active all'immagine visible e lo do a quella successiva
+  $(".next").click(
+    function() {
+      var imgVisible = $("img.active");
+      imgVisible.removeClass("active");
+      if ( imgVisible.hasClass("last") ) {
+        $("img.first").addClass("active");
+      } else {
+        imgVisible.next().addClass("active");
+      }
+    }
+  );
+
+  // Al click sulla freccia sx tolgo classe active all'immagine visible e lo do a quella precedente
+  $(".prev").click(
+    function() {
+      var imgVisible = $("img.active");
+      imgVisible.removeClass("active");
+      if ( imgVisible.hasClass("first") ) {
+        $("img.last").addClass("active");
+      } else {
+        imgVisible.prev().addClass("active");
+      }
+    }
+  );
+
+});
