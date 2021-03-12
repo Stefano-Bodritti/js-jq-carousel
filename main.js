@@ -3,42 +3,66 @@
 // Utiliziamo una classe first e last per capire quali sono la prima e ultima immagine dello slider
 // Utilizziamo una classe active per aiutarci a capire quale è l’immagine attuale da visualizzare nello slider
 
+// FUNZIONI
+// funzione che fa slide verso dx
+// Al click sulla freccia dx tolgo classe active all'immagine visible e lo do a quella successiva
+function slideRight() {
+  var imgVisible = $("img.active");
+  var bulletBlue = $(".fa-circle.active");
+
+  imgVisible.removeClass("active");
+  bulletBlue.removeClass("active");
+
+  if ( imgVisible.hasClass("last") ) {
+    $("img.first").addClass("active");
+    $(".fa-circle.first").addClass("active");
+  } else {
+    imgVisible.next().addClass("active");
+    bulletBlue.next().addClass("active");
+  }
+}
+
+//funzione che va slide verso sx
+// Al click sulla freccia sx tolgo classe active all'immagine visible e lo do a quella precedente
+function slideLeft() {
+  var imgVisible = $("img.active");
+  var bulletBlue = $(".fa-circle.active");
+
+  imgVisible.removeClass("active");
+  bulletBlue.removeClass("active");
+
+  if ( imgVisible.hasClass("first") ) {
+    $("img.last").addClass("active");
+    $(".fa-circle.last").addClass("active");
+  } else {
+    imgVisible.prev().addClass("active");
+    bulletBlue.prev().addClass("active");
+  }
+}
+
 $(function() {
 
-  // Al click sulla freccia dx tolgo classe active all'immagine visible e lo do a quella successiva
   $(".next").click(
     function() {
-      var imgVisible = $("img.active");
-      var bulletBlue = $(".fa-circle.active");
-
-      imgVisible.removeClass("active");
-      bulletBlue.removeClass("active");
-
-      if ( imgVisible.hasClass("last") ) {
-        $("img.first").addClass("active");
-        $(".fa-circle.first").addClass("active");
-      } else {
-        imgVisible.next().addClass("active");
-        bulletBlue.next().addClass("active");
-      }
+      slideRight()
     }
   );
 
-  // Al click sulla freccia sx tolgo classe active all'immagine visible e lo do a quella precedente
+
   $(".prev").click(
     function() {
-      var imgVisible = $("img.active");
-      var bulletBlue = $(".fa-circle.active");
+      slideLeft()
+    }
+  );
 
-      imgVisible.removeClass("active");
-      bulletBlue.removeClass("active");
-
-      if ( imgVisible.hasClass("first") ) {
-        $("img.last").addClass("active");
-        $(".fa-circle.last").addClass("active");
-      } else {
-        imgVisible.prev().addClass("active");
-        bulletBlue.prev().addClass("active");
+  //se premo i tasti freccia-sx o freccia-dx, invoco le funzioni
+  $(document).keydown(
+    function() {
+      var pressed = event.which;
+      if ( pressed == 37 ) {
+        slideLeft();
+      } else if ( pressed == 39 ) {
+        slideRight();
       }
     }
   );
