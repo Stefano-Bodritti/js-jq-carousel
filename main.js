@@ -9,11 +9,17 @@ $(function() {
   $(".next").click(
     function() {
       var imgVisible = $("img.active");
+      var bulletBlue = $(".fa-circle.active");
+
       imgVisible.removeClass("active");
+      bulletBlue.removeClass("active");
+
       if ( imgVisible.hasClass("last") ) {
         $("img.first").addClass("active");
+        $(".fa-circle.first").addClass("active");
       } else {
         imgVisible.next().addClass("active");
+        bulletBlue.next().addClass("active");
       }
     }
   );
@@ -22,11 +28,17 @@ $(function() {
   $(".prev").click(
     function() {
       var imgVisible = $("img.active");
+      var bulletBlue = $(".fa-circle.active");
+
       imgVisible.removeClass("active");
+      bulletBlue.removeClass("active");
+
       if ( imgVisible.hasClass("first") ) {
         $("img.last").addClass("active");
+        $(".fa-circle.last").addClass("active");
       } else {
         imgVisible.prev().addClass("active");
+        bulletBlue.prev().addClass("active");
       }
     }
   );
