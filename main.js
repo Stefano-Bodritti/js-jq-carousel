@@ -22,7 +22,7 @@ function slideRight() {
   }
 }
 
-//funzione che va slide verso sx
+//funzione che fa slide verso sx
 // Al click sulla freccia sx tolgo classe active all'immagine visible e lo do a quella precedente
 function slideLeft() {
   var imgVisible = $("img.active");
@@ -39,6 +39,7 @@ function slideLeft() {
     bulletBlue.prev().addClass("active");
   }
 }
+
 
 $(function() {
 
@@ -64,6 +65,16 @@ $(function() {
       } else if ( pressed == 39 ) {
         slideRight();
       }
+    }
+  );
+
+  //se faccio click su un bullet, tolgo a tutti i bullet e img la classe active, e la do solo all'elemento selezionato
+  $(".nav > i").click(
+    function() {
+      $(".images > img").removeClass("active");
+      $(".nav > i").removeClass("active");
+
+      
     }
   );
 
