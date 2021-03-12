@@ -73,8 +73,9 @@ $(function() {
     function() {
       $(".images > img").removeClass("active");
       $(".nav > i").removeClass("active");
-
-      
+      var bulletClicked = $(".nav > i").index(this);
+      $(this).addClass("active");
+      $(".images > img").eq(bulletClicked).addClass("active");
     }
   );
 
